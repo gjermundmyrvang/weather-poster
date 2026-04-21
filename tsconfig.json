@@ -34,7 +34,7 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
@@ -42,6 +42,6 @@
     "skipLibCheck": true,
 
     "moduleResolution": "nodenext",
-    "esModuleInterop": true,
+    "esModuleInterop": true
   }
 }
