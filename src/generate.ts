@@ -5,6 +5,8 @@ import React from 'react'
 import { fetchWeather } from './api/metno.js'
 import { extractDailyForecasts } from './api/forecast.js'
 import { Poster } from './poster/Poster.js'
+import { downloadIcons } from './icons/downloadIcons.js'
+import { getIconBase64 } from './icons/getIcon.js'
 
 interface Args {
   lat: number
@@ -57,6 +59,12 @@ async function main(): Promise<void> {
   console.log('Extracting forecasts...')
   const forecasts = extractDailyForecasts(weatherData.properties.timeseries, args.days)
 
+  console.log('Downloading icons...')
+  await downloadIcons()
+
+  console.log('Loading icons...')
+  const icons = await Promise.all(forecasts.map((f) => getIconBase64(f.symbolCode)))
+
   const generatedAt = new Date().toLocaleString('en-GB', {
     day: 'numeric',
     month: 'short',
@@ -70,6 +78,7 @@ async function main(): Promise<void> {
     locationName: args.location,
     forecasts,
     generatedAt,
+    icons,
   })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,7 +88,6 @@ async function main(): Promise<void> {
 
   const filename = `${args.location.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}.pdf`
   const outputPath = join('output', filename)
-
   await writeFile(outputPath, buffer)
 
   console.log(`✓ PDF saved to ${outputPath}`)
