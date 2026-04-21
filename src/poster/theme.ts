@@ -1,6 +1,18 @@
+import { Font } from '@react-pdf/renderer'
+import { join } from 'path'
+
+Font.register({
+  family: 'Inter',
+  fonts: [
+    { src: join(process.cwd(), 'src/fonts/Inter-Regular.otf'), fontWeight: 400 },
+    { src: join(process.cwd(), 'src/fonts/Inter-Bold.otf'), fontWeight: 700 },
+    { src: join(process.cwd(), 'src/fonts/Inter-Light.otf'), fontWeight: 300 },
+  ],
+})
+
 export const theme = {
   colors: {
-    background: '#0F1B2D',
+    background: '#070d16',
     card: '#1A2E45',
     accent: '#4A9EFF',
     accentWarm: '#FFB347',
@@ -9,9 +21,7 @@ export const theme = {
     divider: '#1E3A5F',
   },
   fonts: {
-    heading: 'Helvetica-Bold',
-    body: 'Helvetica',
-    light: 'Helvetica-Light',
+    family: 'Inter',
   },
   spacing: {
     page: 40,
@@ -19,7 +29,6 @@ export const theme = {
     gap: 12,
   },
   size: {
-    // A4 in points (72pts per inch)
     width: 595,
     height: 842,
   },
