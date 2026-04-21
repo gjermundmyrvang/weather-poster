@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "generate": "tsx src/generate.ts",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
@@ -20,5 +21,8 @@
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
   }
 }
